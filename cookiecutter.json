@@ -1,0 +1,10 @@
+{
+    "service_name": "default_service",
+    "item_name": "ecu",
+    "__item_cls": "{{ cookiecutter.item_name|title|replace('_', '') }}",
+    "description": "short description",
+    "author": "John Doe",
+    "email": "john.doe@example.com",
+    "version": "0.0.1",
+    "license": "MIT"
+}

@@ -1,0 +1,8 @@
+.DS_Store
+*.pyc
+*.swp
+*.bak
+env/
+.env
+.envrc
+
