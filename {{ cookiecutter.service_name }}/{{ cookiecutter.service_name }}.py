@@ -1,18 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from typing import Union
 from unittest import skip
 
 from fastapi import FastAPI, HTTPException
 
-from database.db import engine, BaseModel
+from database.db import BaseModel
 from routers.userrouter import user_router
 from routers.{{ cookiecutter.item_name }}router import {{ cookiecutter.item_name }}_router
-
-
-# create tables
-BaseModel.metadata.create_all(bind=engine)
 
 
 # prepare API application

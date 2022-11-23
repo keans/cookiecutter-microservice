@@ -2,7 +2,7 @@ from typing import Union
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
-from database.db import BaseModel
+from database.db import BaseModel, engine
 
 
 class User(BaseModel):
@@ -10,6 +10,7 @@ class User(BaseModel):
     
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True)
+    password_hash = Column(String)
     disabled = Column(Boolean)
 
 
@@ -18,3 +19,7 @@ class {{ cookiecutter.__item_cls }}(BaseModel):
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True)
+
+
+# create tables
+BaseModel.metadata.create_all(bind=engine)

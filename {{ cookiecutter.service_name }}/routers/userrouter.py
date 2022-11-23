@@ -30,7 +30,7 @@ async def login(
         )
 
     # check password
-    if pwd_context.verify(form_data.password, user.hashed_password) is False:
+    if pwd_context.verify(form_data.password, user.password_hash) is False:
         # invalid password
         raise HTTPException(
             status_code=400, 
