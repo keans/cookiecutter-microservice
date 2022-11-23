@@ -7,6 +7,7 @@ from unittest import skip
 from fastapi import FastAPI, HTTPException
 
 from database.db import engine, BaseModel
+from routers.userrouter import user_router
 from routers.{{ cookiecutter.item_name }}router import {{ cookiecutter.item_name }}_router
 
 
@@ -20,7 +21,7 @@ app = FastAPI(
 )
 
 app.include_router({{ cookiecutter.item_name }}_router)
-
+app.include_router(user_router)
 
 
 @app.get("/")
