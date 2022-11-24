@@ -6,6 +6,9 @@ from schema.base import BaseSchema
 
 
 class Token(BaseModel):
+    """
+    token model used for authentication
+    """
     access_token: str
     token_type: str
 
