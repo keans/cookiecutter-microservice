@@ -1,6 +1,6 @@
 {
     "service_name": "default_service",
-    "item_name": "ecu",
+    "item_name": "item",
     "__item_cls": "{{ cookiecutter.item_name|title|replace('_', '') }}",
     "description": "short description",
     "author": "John Doe",

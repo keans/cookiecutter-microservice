@@ -24,8 +24,24 @@ For the documentation browse to
 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
 
-add an item
+### get JWT token
 
 ```
-curl -d '{"id":"1", "name":"cool"}' -H "Content-Type: application/json" -X POST http://127.0.0.1:8000/items/
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "username=user&password=password" http://127.0.0.1:8000/token/
+```
+
+store the `access_token` for the further calls.
+
+
+### add a {{ cookiecutter.item_name }}
+
+```
+curl -d '{"id":"1", "name":"name"}' -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -X POST http://127.0.0.1:8000/{{ cookiecutter.item_name }}s/
+```
+
+
+### get all {{ cookiecutter.item_name }}s
+
+```
+curl -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -X GET http://127.0.0.1:8000/{{ cookiecutter.item_name }}s/
 ```

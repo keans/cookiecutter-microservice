@@ -6,6 +6,9 @@ from database.db import BaseModel, engine
 
 
 class User(BaseModel):
+    """
+    User model
+    """
     __tablename__ = "users"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -15,11 +18,14 @@ class User(BaseModel):
 
 
 class {{ cookiecutter.__item_cls }}(BaseModel):
+    """
+    {{ cookiecutter.__item_cls }} model
+    """
     __tablename__ = "{{ cookiecutter.item_name.lower() }}s"
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True)
 
 
-# create tables
+# create all tables
 BaseModel.metadata.create_all(bind=engine)
