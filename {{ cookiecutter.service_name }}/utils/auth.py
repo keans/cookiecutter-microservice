@@ -135,7 +135,8 @@ def create_access_token(
             datetime.timedelta(minutes=JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
         )
     )
-
+    print(expiration_date)
+    
     # encode the JWT data
     encoded_jwt = jwt.encode(
         claims={**data, **{"exp": expiration_date}}, 

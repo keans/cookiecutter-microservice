@@ -64,7 +64,11 @@ class CRUDBase(Generic[ModelType]):
         ).offset(skip).limit(limit).all()
 
 
-    def create(self, db: Session, obj_in: CreateSchemaType) -> ModelType:
+    def create(
+        self, 
+        db: Session, 
+        obj_in: CreateSchemaType
+    ) -> ModelType:
         """
         create model item
 
@@ -82,6 +86,34 @@ class CRUDBase(Generic[ModelType]):
         db.refresh(db_obj)
 
         return db_obj
+
+    def delete(
+        self,
+        db: Session, 
+        id: Any
+    ) -> bool:
+        """
+        delete model item
+
+        :param db: database session
+        :type db: Session
+        :param id: id of the item
+        :type id: Any
+        :return: True, if item was found and deleted else False
+        :rtype: bool
+
+        """
+        item = db.query(self.model).filter(
+            self.model.id == id
+        ).first()
+        if item is None:
+            # item not found
+            return False
+    
+        db.delete(item)
+        db.commit()
+    
+        return True
 
     def update(self, db: Session, obj_in: UpdateSchemaType) -> ModelType:
         """

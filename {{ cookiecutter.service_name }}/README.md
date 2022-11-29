@@ -40,6 +40,21 @@ curl -d '{"id":"1", "name":"name"}' -H "Content-Type: application/json" -H "Auth
 ```
 
 
+### get {{ cookiecutter.item_name }} by ID
+
+```
+curl -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -X GET http://127.0.0.1:8000/{{ cookiecutter.item_name }}s/<id>/
+```
+
+
+### delete {{ cookiecutter.item_name }} by ID
+
+```
+curl -H "Content-Type: application/json" -H "Authorization: Bearer <token>" -X DELETE http://127.0.0.1:8000/{{ cookiecutter.item_name }}s/<id>/
+```
+
+
+
 ### get all {{ cookiecutter.item_name }}s
 
 ```

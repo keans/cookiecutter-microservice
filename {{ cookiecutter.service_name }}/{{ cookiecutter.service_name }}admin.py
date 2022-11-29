@@ -19,7 +19,7 @@ def createuser(username: str, password: str):
     """
     click.echo(f"Creating user '{username}'...")
     db = SessionLocal()
-   
+
     user = User(
         username=username, 
         password_hash=pwd_context.hash(password),
