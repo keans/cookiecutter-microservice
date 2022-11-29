@@ -79,7 +79,10 @@ class CRUDBase(Generic[ModelType]):
         :return: created model item
         :rtype: ModelType
         """
+        # encode input data
         obj_in_data = jsonable_encoder(obj_in)
+
+        # create database object
         db_obj = self.model(**obj_in_data)
         db.add(db_obj)
         db.commit()
@@ -115,21 +118,38 @@ class CRUDBase(Generic[ModelType]):
     
         return True
 
-    def update(self, db: Session, obj_in: UpdateSchemaType) -> ModelType:
+    def update(
+        self, 
+        db: Session, 
+        id: Any
+        obj_in: UpdateSchemaType
+    ) -> ModelType:
         """
         update model item
 
         :param db: database session
         :type db: Session
+        :param id: id of the item
+        :type id: Any
         :param obj_in: input schema
         :type obj_in: UpdateSchemaType
         :return: updated model item
         :rtype: ModelType
         """
-        obj_in_data = jsonable_encoder(obj_in)
-        db_obj = self.model(**obj_in_data)
-        db.add(db_obj)
-        db.commit()
-        db.refresh(db_obj)
+        item = db.query(self.model).filter(
+            self.model.id == id
+        ).first()
+        if item is None:
+            # item not found
+            return None
 
-        return db_obj
+        # get dictionary of input data and set these at properties
+        obj_in_data = obj_in.dict(exclude_unset=True)
+        for key, value in obj_in_data.items():
+            setattr(item, key, value)
+
+        db.add(item)
+        db.commit()
+        db.refresh(item)
+        
+        return item
