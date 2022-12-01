@@ -2,7 +2,7 @@ from typing import Union
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
-from database.db import BaseModel, engine
+from microservice.database.db import BaseModel, engine
 
 
 class User(BaseModel):

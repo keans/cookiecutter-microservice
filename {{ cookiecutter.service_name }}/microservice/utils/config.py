@@ -31,3 +31,16 @@ JWT_ALGORITHM = os.environ.get(
     "{{ cookiecutter.service_name.upper() }}_JWT_ALGORITHM",
     default="HS256"
 )
+
+
+# command line user
+CMD_USER = os.environ.get(
+    "{{ cookiecutter.service_name.upper() }}_CMD_USER",
+    default=None
+)
+
+# command line password
+CMD_PASSWORD = os.environ.get(
+    "{{ cookiecutter.service_name.upper() }}_CMD_PASSWORD",
+    default=None
+)

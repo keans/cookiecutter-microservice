@@ -3,12 +3,13 @@ from typing import Union
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from dependencies import get_db, oauth2_scheme
-from schema.{{ cookiecutter.item_name }}schema import {{ cookiecutter.__item_cls }}CreateSchema, \
+from microservice.dependencies import get_db, oauth2_scheme
+from microservice.schema.{{ cookiecutter.item_name }}schema import {{ cookiecutter.__item_cls }}CreateSchema, \
     {{ cookiecutter.__item_cls }}UpdateSchema
-from crud.{{ cookiecutter.item_name }}crud import {{ cookiecutter.item_name }}
-from database.models import User
-from utils.auth import get_current_user
+from microservice.crud.{{ cookiecutter.item_name }}crud import {{ cookiecutter.item_name }}
+from microservice.database.models import User
+from microservice.utils.auth import get_current_user
+
 
 # create the router
 {{ cookiecutter.item_name }}_router = APIRouter(

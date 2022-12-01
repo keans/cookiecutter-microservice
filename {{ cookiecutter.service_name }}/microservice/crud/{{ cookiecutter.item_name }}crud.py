@@ -1,5 +1,5 @@
-from crud.base import CRUDBase
-from database.models import {{ cookiecutter.__item_cls }}
+from microservice.crud.base import CRUDBase
+from microservice.database.models import {{ cookiecutter.__item_cls }}
 
 
 class CRUD{{ cookiecutter.__item_cls }}(CRUDBase[{{ cookiecutter.__item_cls }}]):

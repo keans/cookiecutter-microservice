@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
 
-from database.models import BaseModel
+from microservice.database.models import BaseModel
 
 
 ModelType = TypeVar("ModelType", bound=BaseModel)
@@ -121,7 +121,7 @@ class CRUDBase(Generic[ModelType]):
     def update(
         self, 
         db: Session, 
-        id: Any
+        id: Any,
         obj_in: UpdateSchemaType
     ) -> ModelType:
         """

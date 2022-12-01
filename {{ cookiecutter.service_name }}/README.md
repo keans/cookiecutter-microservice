@@ -14,7 +14,13 @@ pip install fastapi "uvicorn[standard] sqlalchemy"
 start the micro service
 
 ```
-uvicorn {{ cookiecutter.service_name }}:app --reload
+./manage.py runserver
+```
+
+or start it via the external `uvicorn` command:
+
+```
+uvicorn microservice.{{ cookiecutter.service_name }}:app --reload
 ```
 
 Point your browser to [http://127.0.0.1:8000](http://127.0.0.1:8000) to 
