@@ -14,5 +14,21 @@ engine = create_engine(
 # perpare local session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+
+class BaseExtension:
+    """
+    extension of the Base Model class
+    """
+    def __repr__(self):
+        attrs = ", ".join([
+            f"{k}={v}"
+            for k, v in self.__dict__.items()
+            if not k.startswith("_")
+        ])
+        return (
+            f"<{self.__class__.__name__}({attrs})>"
+        )
+
+
 # create base model from which all database models shall be derived
-BaseModel = declarative_base()
+BaseModel = declarative_base(cls=BaseExtension)

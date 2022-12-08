@@ -6,7 +6,7 @@
 ```
 python -m venv env
 source env/bin/activate
-pip install fastapi "uvicorn[standard] sqlalchemy"
+pip install fastapi "uvicorn[standard] sqlalchemy pyyaml"
 ```
 
 ## usage

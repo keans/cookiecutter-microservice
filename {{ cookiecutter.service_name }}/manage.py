@@ -9,6 +9,7 @@ from microservice.dependencies import pwd_context
 from microservice.database.db import SessionLocal
 from microservice.database.models import User
 from microservice.utils.config import CMD_USER, CMD_PASSWORD
+from microservice.utils.loadfixture import LoadFixture
 from microservice.{{ cookiecutter.service_name }} import app
 
 
@@ -84,6 +85,18 @@ def gettoken(username: str, password: str):
         )
 
     click.echo(r.json()["access_token"])
+
+
+@cli.command()
+@click.argument("yamlfile")
+def loaddata(yamlfile):
+    """
+    load data from fixture
+    """
+    click.echo(f"loading '{yamlfile}'...")
+    lf = LoadFixture(filename=yamlfile)
+    lf.dumpdata()
+
 
 
 if __name__ == "__main__":
