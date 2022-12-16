@@ -5,10 +5,10 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
-from microservice.dependencies import get_db
-from microservice.utils.auth import authenticate_user, get_user_from_token, \
+from ..dependencies import get_db
+from ..utils.auth import authenticate_user, get_user_from_token, \
     create_access_token
-from microservice.schema.{{ cookiecutter.item_name }}schema import Token
+from ..schema.{{ cookiecutter.item_name }}schema import Token
 
 
 # create the router

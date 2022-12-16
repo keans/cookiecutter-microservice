@@ -6,9 +6,9 @@ from jose import JWTError, jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-from microservice.dependencies import pwd_context, get_db, oauth2_scheme
-from microservice.database.models import User
-from microservice.utils.config import JWT_ACCESS_TOKEN_EXPIRE_MINUTES, \
+from ..dependencies import pwd_context, get_db, oauth2_scheme
+from ..database.models import User
+from ..utils.config import JWT_ACCESS_TOKEN_EXPIRE_MINUTES, \
     JWT_ALGORITHM, JWT_SECRET_KEY
 
 

@@ -2,7 +2,7 @@ from typing import List, Union
 
 from pydantic import BaseModel
 
-from microservice.schema.base import BaseSchema
+from .base import BaseSchema
 
 
 class Token(BaseModel):

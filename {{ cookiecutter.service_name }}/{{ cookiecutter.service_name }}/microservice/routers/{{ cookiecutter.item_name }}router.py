@@ -1,15 +1,20 @@
+import logging
 from typing import Union
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 
-from microservice.dependencies import get_db, oauth2_scheme
-from microservice.schema.{{ cookiecutter.item_name }}schema import {{ cookiecutter.__item_cls }}CreateSchema, \
+from ..dependencies import get_db, oauth2_scheme
+from ..schema.{{ cookiecutter.item_name }}schema import {{ cookiecutter.__item_cls }}CreateSchema, \
     {{ cookiecutter.__item_cls }}UpdateSchema
-from microservice.crud.{{ cookiecutter.item_name }}crud import {{ cookiecutter.item_name }}
-from microservice.database.models import User
-from microservice.utils.auth import get_current_user
+from ..crud.{{ cookiecutter.item_name }}crud import {{ cookiecutter.item_name }}
+from ..database.models import User
+from ..utils.auth import get_current_user
 
+
+# prepare logger
+log = logging.getLogger()
 
 # create the router
 {{ cookiecutter.item_name }}_router = APIRouter(
@@ -79,10 +84,22 @@ async def create_{{ cookiecutter.item_name }}(
     """
     create new {{ cookiecutter.item_name }}
     """
-    return {{ cookiecutter.item_name }}.create(
-        db, 
-        obj_in={{ cookiecutter.item_name }}_schema
-    )
+    try:
+        # create the {{ cookiecutter.item_name }}
+        res = {{ cookiecutter.item_name }}.create(
+            db, 
+            obj_in={{ cookiecutter.item_name }}_schema
+        )
+
+    except IntegrityError as e:
+        # problem during creation, e.g., not unique ID
+        log.error(e)
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Could not create {{ cookiecutter.__item_cls }}!"
+        )
+    
+    return res
 
 
 @{{ cookiecutter.item_name }}_router.patch("/{{ cookiecutter.item_name }}s/{id}/")
@@ -95,16 +112,18 @@ async def update_{{ cookiecutter.item_name }}(
     """
     update {{ cookiecutter.item_name }} by its ID
     """
+    # update the {{ cookiecutter.item_name }}
     res = {{ cookiecutter.item_name }}.update(
         db=db, 
         id=id, 
         obj_in={{ cookiecutter.item_name }}_schema
     )
+
     if res is None:
         # item not found
         raise HTTPException(
             status_code=404, 
-            detail=f"{{ cookiecutter.__item_cls }} with ID {id} not found"
+            detail=f"{{ cookiecutter.__item_cls }} with ID {id} not found!"
         )
 
     return res

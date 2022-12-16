@@ -1,7 +1,7 @@
 from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 
-from microservice.database.db import SessionLocal
+from .database.db import SessionLocal
 
 
 # authentication scheme

@@ -1,12 +1,7 @@
-- model: {{ cookiecutter.__item_cls }}
-  pk: 1
-  fields:
+- {{ cookiecutter.__item_cls }}:
+  - __key__: foo
     name: "foo"
-- model: Item
-  pk: 2
-  fields:
+  - __key__: bar
     name: "bar"
-- model: Item
-  pk: 3
-  fields:
+  - __key__: baz
     name: "baz"

@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from microservice.utils.config import SQLALCHEMY_DATABASE_URL
+from ..utils.config import SQLALCHEMY_DATABASE_URL
 
 
 # create database engine for given database URL

@@ -5,9 +5,9 @@ from unittest import skip
 
 from fastapi import FastAPI, HTTPException
 
-from microservice.database.db import BaseModel
-from microservice.routers.userrouter import user_router
-from microservice.routers.{{ cookiecutter.item_name }}router import {{ cookiecutter.item_name }}_router
+from .database.db import BaseModel
+from .routers.userrouter import user_router
+from .routers.{{ cookiecutter.item_name }}router import {{ cookiecutter.item_name }}_router
 
 
 # prepare API application
